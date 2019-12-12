@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "msvc build",
+        "type": "shell",
+        "command": "cl.exe",
+        "args": [
+            // Compiler options
+            "/EHsc",
+            "/Zi",
+            "/I", "${env:SFMLPATH}/include",
+            "/Fd:", "bin/",
+            "/Fo:", "obj/",
+            "/Fe:", "bin/helloworld.exe",
+            // CPP files
+            "main.cpp",
+            // SFML libs
+            "sfml-graphics.lib",
+            "sfml-window.lib",
+            "sfml-system.lib",
+            // Linker options
+            "/link", "/LIBPATH:${env:SFMLPATH}/lib"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always"
+        },
+        "problemMatcher": "$msCompile"
+      }
+    ]
+  }
