@@ -22,8 +22,9 @@ int main()
     helloWorldText.setString("HELLO WORLD!");
 
     // Physics (if you can call it that)
-    int velocityX = 2;
-    int velocityY = 2;
+    sf::Clock clock;
+    float velocityX = 0.25f;
+    float velocityY = 0.25f;
     float posX = 0.0f;
     float posY = 0.0f;
     auto bounds = helloWorldText.getLocalBounds();
@@ -37,9 +38,10 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        auto elapsed = clock.restart();
         // Update positions
-        posX += velocityX;
-        posY += velocityY;
+        posX += velocityX * elapsed.asMilliseconds();
+        posY += velocityY * elapsed.asMilliseconds();
         if (posX < 0)
         {
             posX = 0;
